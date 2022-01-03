@@ -1,4 +1,4 @@
-import { EuiButton, EuiEmptyPrompt, EuiPageTemplate, EuiPanel } from '@elastic/eui';
+import { EuiButton, EuiPageTemplate, EuiPanel } from '@elastic/eui';
 import React, { useState } from 'react';
 import './App.css';
 import CreationModal from './components/CreationModal';
