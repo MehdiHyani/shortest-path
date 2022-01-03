@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import '@elastic/eui/dist/eui_theme_dark.css';
+import { EuiProvider } from '@elastic/eui';
+import { FlowProvider } from './context/FlowContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <EuiProvider colorMode='dark'>
+      <FlowProvider>
+        <App />
+      </FlowProvider>
+    </EuiProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
