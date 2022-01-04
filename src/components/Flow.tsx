@@ -1,5 +1,6 @@
+import { isWithinBreakpoints } from '@elastic/eui';
 import React, { useContext } from 'react';
-import ReactFlow, { MiniMap } from 'react-flow-renderer';
+import ReactFlow, { MiniMap, Controls } from 'react-flow-renderer';
 import { FlowContext } from '../context/FlowContext';
 
 function Flow() {
@@ -21,7 +22,7 @@ function Flow() {
 
     return (
         <div style={{ height: 400 }}>
-            <ReactFlow nodesConnectable={false} elements={flow}>
+            <ReactFlow defaultZoom={isWithinBreakpoints(window.innerWidth, ['xs', 's']) ? 0.25 : 1} nodesConnectable={false} elements={flow}>
                 <MiniMap
                     nodeColor={(node) => {
                         switch (node.type) {
@@ -37,6 +38,7 @@ function Flow() {
                     }}
                     nodeStrokeWidth={3}
                 />
+                <Controls />
             </ReactFlow>
         </div>
     )
