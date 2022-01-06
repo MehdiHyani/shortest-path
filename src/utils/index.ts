@@ -1,4 +1,37 @@
-export const findShortestPath = (graph: any, startNode: any, endNode: any) => {
+const shortestDistanceNode = (distances: any, visited: any) => {
+  let shortest = null;
+  
+  for (let node in distances) {
+    let currentIsShortest = shortest === null || distances[node] < distances[shortest];
+
+    if (currentIsShortest && !visited.includes(node)) {
+      shortest = node;
+    }
+  }
+  return shortest;
+};
+
+
+export const findShortestPath = (flow: Array<any>, startNode: string, endNode: string) => {
+  // Construct the graph @matrix
+  const graph: any = {}
+  flow
+    .filter((elt) => !(elt.id as String).startsWith("e"))
+    .forEach((elt: any) => {
+      graph[elt.id] = {};
+    });
+  const edges = flow.filter((elt) => (elt.id as String).startsWith("e"));
+  if(edges.length === 0)
+    throw new Error("No edges, Add one or more to calculate the shortest path");
+
+  edges.map((edge: any) => {
+    graph[edge.source][edge.target] = parseInt(edge.label);
+    graph[edge.target][edge.source] = parseInt(edge.label);
+    return null
+  })
+
+  // console.log(graph);
+
   // track distances from the start node using a hash object
   let distances = {};
   // @ts-ignore
@@ -69,5 +102,6 @@ export const findShortestPath = (graph: any, startNode: any, endNode: any) => {
     path: shortestPath,
   };
   // return the shortest path & the end node's distance from the start node
+  console.log(results)
   return results;
 };

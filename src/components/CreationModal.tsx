@@ -43,6 +43,7 @@ function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
                             position: { x: 250 * (currentId % 9), y: -25 }
                         }])
                     }
+                    setCurrentId(currentId + 1)
                     break;
 
                 case 'edge':
@@ -75,7 +76,6 @@ function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
                     break;
 
             }
-            setCurrentId(currentId + 1)
             console.log(flow)
         } catch (error) {
 
