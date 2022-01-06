@@ -6,8 +6,10 @@ export interface FlowContextState {
   currentId: number;
   setCurrentId: React.Dispatch<React.SetStateAction<number>>;
 }
-
 export interface MobileBarProps {
   openCreationModal: MouseEventHandler<HTMLAnchorElement>;
   openCalculationModal: MouseEventHandler<HTMLAnchorElement>;
+}
+export interface ActionsButtonDesktopProps {
+  openModal: Function
 }
