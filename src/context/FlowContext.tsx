@@ -24,7 +24,7 @@ export const FlowProvider = ({ children }: any) => {
         "label": "Node B"
       },
       "position": {
-        "x": 200,
+        "x": 250,
         "y": 25
       }
     },
@@ -35,8 +35,8 @@ export const FlowProvider = ({ children }: any) => {
         "label": "Node C"
       },
       "position": {
-        "x": 400,
-        "y": 25
+        "x": 100,
+        "y": 150
       }
     },
     {
@@ -46,8 +46,8 @@ export const FlowProvider = ({ children }: any) => {
         "label": "Node D"
       },
       "position": {
-        "x": 0,
-        "y": 100
+        "x": 350,
+        "y": 150
       }
     },
     {
@@ -57,8 +57,8 @@ export const FlowProvider = ({ children }: any) => {
         "label": "Node E"
       },
       "position": {
-        "x": 200,
-        "y": 100
+        "x": 450,
+        "y": 25
       }
     },
     {
