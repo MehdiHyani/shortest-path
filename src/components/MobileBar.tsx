@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { EuiBottomBar, EuiButton, EuiFlexGroup, EuiFlexItem, EuiFlyout, EuiFlyoutBody, EuiFlyoutFooter, EuiFlyoutHeader, EuiTitle, useGeneratedHtmlId } from '@elastic/eui'
 import { MobileBarProps } from '../utils/types'
 import { FlowContext } from '../context/FlowContext';
+import { exampleFlow } from '../utils/constants';
 
 function MobileBar({ openCreationModal, openCalculationModal }: MobileBarProps) {
 
@@ -48,8 +49,13 @@ function MobileBar({ openCreationModal, openCalculationModal }: MobileBarProps) 
                                     </EuiButton>
                                 </EuiFlexItem>
                                 <EuiFlexItem grow={false}>
-                                    <EuiButton onClick={openCalculationModal} color="primary" size="m" iconType="stats">
+                                    <EuiButton onClick={openCalculationModal} color="success" size="m" iconType="stats">
                                         Calculate shortest Path
+                                    </EuiButton>
+                                </EuiFlexItem>
+                                <EuiFlexItem grow={false}>
+                                    <EuiButton onClick={() => setFlow(exampleFlow)} color="accent" size="m" iconType="listAdd">
+                                        Load simple example
                                     </EuiButton>
                                 </EuiFlexItem>
                                 <EuiFlexItem grow={false}>
