@@ -64,7 +64,7 @@ const ActionsButtonDesktop = ({ openModal }: ActionsButtonDesktopProps) => {
                         addToast({
                             title: 'Action successful',
                             color: 'warning',
-                            icon: 'crossInACircleFilled',
+                            icon: 'checkInCircleFilled',
                             text: 'Flow Cleared'
                         })
                     },
