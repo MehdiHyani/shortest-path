@@ -7,12 +7,13 @@ import Flow from './components/Flow';
 import MobileBar from './components/MobileBar';
 import ActionsButtonDesktop from './components/ActionsButtonDesktop';
 import { ToastContext } from './context/ToastContext';
+import { RootAppState } from './utils/types';
 
 function App() {
 
   const { toasts, dismissToast } = useContext(ToastContext)
 
-  const [state, setState] = useState({
+  const [state, setState] = useState<RootAppState>({
     isCreationModalOpen: false,
     isCalculationModalOpen: false,
   })

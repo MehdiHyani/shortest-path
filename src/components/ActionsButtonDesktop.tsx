@@ -59,14 +59,17 @@ const ActionsButtonDesktop = ({ openModal }: ActionsButtonDesktopProps) => {
                     name: 'Clear Flow',
                     icon: <EuiIcon type="trash" size="m" color="danger" />,
                     onClick: () => {
-                        setFlow([]);
-                        setPopover(false);
-                        addToast({
-                            title: 'Action successful',
-                            color: 'warning',
-                            icon: 'checkInCircleFilled',
-                            text: 'Flow Cleared'
-                        })
+                        // eslint-disable-next-line no-restricted-globals
+                        if (confirm("Are you sure? The flow will be cleared and all data will be lost") === true) {
+                            setFlow([]);
+                            setPopover(false);
+                            addToast({
+                                title: 'Action successful',
+                                color: 'warning',
+                                icon: 'checkInCircleFilled',
+                                text: 'Flow Cleared'
+                            })
+                        }
                     },
                 },
             ],
@@ -86,7 +89,7 @@ const ActionsButtonDesktop = ({ openModal }: ActionsButtonDesktopProps) => {
             panelPaddingSize="none"
             anchorPosition="downLeft"
         >
-            <EuiContextMenu initialPanelId={0} panels={panels as any} />
+            <EuiContextMenu initialPanelId={0} panels={panels} />
         </EuiPopover>
     );
 };

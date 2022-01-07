@@ -1,14 +1,15 @@
 import React from "react";
 import { htmlIdGenerator } from "@elastic/eui";
-import { CustomToastProps, ToastContextState } from "../utils/types";
+import { Children, CustomToastProps, ToastContextState } from "../utils/types";
 import { EuiToastProps } from "@elastic/eui/src/components/toast/toast";
+import { Toast } from "@elastic/eui/src/components/toast/global_toast_list";
 
 // @ts-ignore
 export const ToastContext = React.createContext<ToastContextState>()
 
-export const ToastProvider = ({ children }: any) => {
+export const ToastProvider = ({ children }: Children) => {
 
-    const [toasts, setToasts] = React.useState<Array<EuiToastProps>>([])
+    const [toasts, setToasts] = React.useState<Array<Toast>>([])
 
     function addToast({ title, color, icon, text }: CustomToastProps) {
         if (toasts.length <= 5) {
