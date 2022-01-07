@@ -2,6 +2,7 @@ import React, { SetStateAction, useContext, useState } from 'react'
 import { EuiBetaBadge, EuiButton, EuiCard, EuiForm, EuiFormRow, EuiLoadingSpinner, EuiModal, EuiModalBody, EuiModalFooter, EuiModalHeader, EuiModalHeaderTitle, EuiSelect, EuiSpacer } from '@elastic/eui'
 import { FlowContext } from '../context/FlowContext'
 import { findShortestPath } from '../utils'
+import { ToastContext } from '../context/ToastContext'
 
 function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
 
@@ -13,6 +14,7 @@ function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
     })
 
     const { flow } = useContext(FlowContext)
+    const { addToast } = useContext(ToastContext)
 
     const handleCalculate = async () => {
         setState({ ...state, isLoading: true })
@@ -21,7 +23,12 @@ function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
             const res: { distance: number, path: Array<string> } = findShortestPath(flow, state.startNode, state.endNode)
             setState({ ...state, result: res, isLoading: false })
         } catch (error: any) {
-            console.log(error.message)
+            addToast({
+                title: 'Action unsuccessful',
+                color: 'danger',
+                icon: 'crossInACircleFilled',
+                text: error.message
+            })
             setState({ ...state, isLoading: false })
         }
         // finally {

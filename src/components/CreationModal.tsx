@@ -1,6 +1,7 @@
 import { EuiButton, EuiFieldNumber, EuiFieldText, EuiForm, EuiFormRow, EuiModal, EuiModalBody, EuiModalFooter, EuiModalHeader, EuiModalHeaderTitle, EuiSelect } from '@elastic/eui'
 import React, { SetStateAction, useContext, useState } from 'react'
 import { FlowContext } from '../context/FlowContext'
+import { ToastContext } from '../context/ToastContext'
 
 function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
 
@@ -14,11 +15,12 @@ function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
     })
 
     const { flow, setFlow, currentId, setCurrentId } = useContext(FlowContext)
+    const { addToast } = useContext(ToastContext)
 
     const handleAdd = async () => {
         setState({ ...state, isLoading: true })
         try {
-            await new Promise(r => setTimeout(r, 1.5 * 1000));
+            await new Promise(r => setTimeout(r, 500));
             switch (state.addChoice) {
                 case 'node':
                     if (currentId < 5) {
@@ -44,6 +46,12 @@ function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
                         }])
                     }
                     setCurrentId(currentId + 1)
+                    addToast({
+                        title: 'Action successful',
+                        color: 'success',
+                        icon: 'checkInCircleFilled',
+                        text: `Node ${state.nodeName} Added to the flow`
+                    })
                     break;
 
                 case 'edge':
@@ -70,15 +78,25 @@ function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
                             label: state.edgeDistance
 
                         }))
+                    addToast({
+                        title: 'Action successful',
+                        color: 'success',
+                        icon: 'checkInCircleFilled',
+                        text: `Edge ${state.startNode} ->  ${state.endNode} Added to the flow`
+                    })
                     break;
 
                 default:
                     break;
 
             }
-            console.log(flow)
-        } catch (error) {
-
+        } catch (error: any) {
+            addToast({
+                title: 'Action unsuccessful',
+                color: 'danger',
+                icon: 'crossInACircleFilled',
+                text: error.message
+            })
         }
         finally {
             setState({ ...state, isLoading: false })

@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import '@elastic/eui/dist/eui_theme_dark.css';
 import { EuiProvider } from '@elastic/eui';
 import { FlowProvider } from './context/FlowContext';
+import { ToastProvider } from './context/ToastContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <EuiProvider colorMode='dark'>
       <FlowProvider>
-        <App />
+        <ToastProvider>
+          <App />
+        </ToastProvider>
       </FlowProvider>
     </EuiProvider>
   </React.StrictMode>,

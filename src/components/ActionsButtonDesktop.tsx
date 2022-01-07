@@ -8,12 +8,15 @@ import {
 } from '@elastic/eui';
 import { FlowContext } from '../context/FlowContext';
 import { ActionsButtonDesktopProps } from '../utils/types';
+import { ToastContext } from '../context/ToastContext';
+import { exampleFlow } from '../utils/constants';
 
 const ActionsButtonDesktop = ({ openModal }: ActionsButtonDesktopProps) => {
 
     const [isPopoverOpen, setPopover] = useState(false);
 
     const { setFlow } = useContext(FlowContext);
+    const { addToast } = useContext(ToastContext);
 
     const contextMenuPopoverId = useGeneratedHtmlId({
         prefix: 'contextMenuPopover',
@@ -45,11 +48,25 @@ const ActionsButtonDesktop = ({ openModal }: ActionsButtonDesktopProps) => {
                     },
                 },
                 {
+                    name: 'Load simple example',
+                    icon: "listAdd",
+                    onClick: () => {
+                        setFlow(exampleFlow);
+                        setPopover(false);
+                    },
+                },
+                {
                     name: 'Clear Flow',
                     icon: <EuiIcon type="trash" size="m" color="danger" />,
                     onClick: () => {
                         setFlow([]);
                         setPopover(false);
+                        addToast({
+                            title: 'Action successful',
+                            color: 'warning',
+                            icon: 'checkInCircleFilled',
+                            text: 'Flow Cleared'
+                        })
                     },
                 },
             ],
