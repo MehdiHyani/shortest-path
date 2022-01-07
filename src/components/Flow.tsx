@@ -11,7 +11,7 @@ function Flow() {
     return (
         <div style={{ height: 400 }}>
             <ReactFlow defaultZoom={isWithinBreakpoints(window.innerWidth, ['xs', 's']) ? 0.25 : 1} nodesConnectable={false} elements={(flow.length === 0) ? emptyFlowNode : flow}>
-                <MiniMap
+                {!isWithinBreakpoints(window.innerWidth, ['xs', 's']) && <MiniMap
                     nodeColor={(node) => {
                         switch (node.type) {
                             case 'input':
@@ -25,7 +25,7 @@ function Flow() {
                         }
                     }}
                     nodeStrokeWidth={3}
-                />
+                />}
                 <Controls />
             </ReactFlow>
         </div>
