@@ -1,3 +1,4 @@
+import { FlowEdge } from './types'
 const shortestDistanceNode = (distances: any, visited: any) => {
   let shortest = null;
   
@@ -12,25 +13,27 @@ const shortestDistanceNode = (distances: any, visited: any) => {
 };
 
 
-export const findShortestPath = (flow: Array<any>, startNode: string, endNode: string) => {
+export const findShortestPath = (
+  flow: any,
+  startNode: string,
+  endNode: string
+) => {
   // Construct the graph @matrix
-  const graph: any = {}
+  const graph: any = {};
   flow
-    .filter((elt) => !(elt.id as String).startsWith("e"))
+    .filter((elt: any) => !(elt.id as String).startsWith("e"))
     .forEach((elt: any) => {
       graph[elt.id] = {};
     });
-  const edges = flow.filter((elt) => (elt.id as String).startsWith("e"));
-  if(edges.length === 0)
+  const edges: Array<FlowEdge> = flow.filter((elt: any) => elt.id.startsWith("e"));
+  if (edges.length === 0)
     throw new Error("No edges, Add one or more to calculate the shortest path");
 
-  edges.map((edge: any) => {
+  edges.map((edge: FlowEdge) => {
     graph[edge.source][edge.target] = parseInt(edge.label);
     graph[edge.target][edge.source] = parseInt(edge.label);
-    return null
-  })
-
-  // console.log(graph);
+    return null;
+  });
 
   // track distances from the start node using a hash object
   let distances = {};
@@ -102,6 +105,5 @@ export const findShortestPath = (flow: Array<any>, startNode: string, endNode: s
     path: shortestPath,
   };
   // return the shortest path & the end node's distance from the start node
-  console.log(results)
   return results;
 };

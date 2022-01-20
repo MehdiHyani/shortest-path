@@ -1,9 +1,9 @@
 import { EuiButton, EuiFieldNumber, EuiFieldText, EuiForm, EuiFormRow, EuiModal, EuiModalBody, EuiModalFooter, EuiModalHeader, EuiModalHeaderTitle, EuiSelect } from '@elastic/eui'
-import React, { SetStateAction, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FlowContext } from '../context/FlowContext'
 import { ToastContext } from '../context/ToastContext'
 
-function CreationModal({ closeModal }: { closeModal: SetStateAction<any> }) {
+function CreationModal({ closeModal }: any) {
 
     const [state, setState] = useState({
         isLoading: false,

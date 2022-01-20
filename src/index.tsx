@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '@elastic/eui/dist/eui_theme_dark.css';
-import { EuiProvider } from '@elastic/eui';
+import { EuiErrorBoundary, EuiProvider } from '@elastic/eui';
 import { FlowProvider } from './context/FlowContext';
 import { ToastProvider } from './context/ToastContext';
 
@@ -13,7 +13,9 @@ ReactDOM.render(
     <EuiProvider colorMode='dark'>
       <FlowProvider>
         <ToastProvider>
-          <App />
+          <EuiErrorBoundary>
+            <App />
+          </EuiErrorBoundary>
         </ToastProvider>
       </FlowProvider>
     </EuiProvider>
