@@ -24,6 +24,7 @@ function Flow() {
                                 return '#eee';
                         }
                     }}
+                    // @ts-ignore
                     nodeStrokeWidth={3}
                 />}
                 <Controls />
